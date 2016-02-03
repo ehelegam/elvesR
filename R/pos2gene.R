@@ -9,26 +9,33 @@
 pos2gene=function(x)
 {
   data("wolb_genes")
+  .chr=1:1268079
   {
     if(length(x)==1)
     {
-      for(i in 1:length(genes$V4))
+      ##
+      if(x %in% .chr)
       {
-        rg=genes[i,2]:genes[i,3]
+        for(i in 1:length(.genes$V3))
         {
+          rg=.genes[i,4]:.genes[i,5]
           if(length(x)==1)
           {
             if(x %in% rg)
             {
-              gene_list=as.character(genes[i,4])
+              gene_list=as.character(.genes[i,6])
               break
             }
             else
             {
               gene_list="non_coding"
             }
-          }
-        }
+      }
+      }
+      }
+      else
+      {
+        gene_list=NA
       }
     }
     else
@@ -36,13 +43,14 @@ pos2gene=function(x)
       gene_list=NULL
       for(n in 1:length(x))
       {
-        for(i in 1:length(genes$V4))
+        if(x[n] %in% .chr)
         {
-          rg=genes[i,2]:genes[i,3]
+          for(i in 1:length(.genes$V3))
           {
+            rg=.genes[i,4]:.genes[i,5]
             if(x[n] %in% rg)
             {
-              gene_list[n]=as.character(genes[i,4])
+              gene_list[n]=as.character(.genes[i,6])
               break
             }
             else
@@ -50,6 +58,10 @@ pos2gene=function(x)
               gene_list[n]="non_coding"
             }
           }
+        }
+        else
+        {
+          gene_list[n]=NA
         }
       }
     }

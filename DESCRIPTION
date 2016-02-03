@@ -1,10 +1,11 @@
 Package: elvesR
 Type: Package
 Title: My own functions
-Version: 0.1
-Date: 2015-04-12
-Author: Elves H Duarte <ehelegam@hotmail.com>
-Maintainer: Elves H Duarte <ehelegam@hotmail.com>
+Version: 0.2
+Date: 2015-10-26
+Author: Elves H Duarte <ehelegam@gmail.com>
+Maintainer: Elves H Duarte <ehelegam@gmail.com>
 Description: More about what it does (maybe more than one line)
 License: What license is it under?
 LazyData: TRUE
+RoxygenNote: 5.0.1
