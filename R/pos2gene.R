@@ -11,60 +11,43 @@ pos2gene=function(x)
   data("wolb_genes")
   .chr=1:1268079
   {
-    if(length(x)==1)
+  if(length(x)==1)
+  {
+    ##
+    if(x %in% .chr)
     {
-      ##
-      if(x %in% .chr)
-      {
-        for(i in 1:length(.genes$V3))
-        {
-          rg=.genes[i,4]:.genes[i,5]
-          if(length(x)==1)
-          {
-            if(x %in% rg)
-            {
-              gene_list=as.character(.genes[i,6])
-              break
-            }
-            else
-            {
-              gene_list="non_coding"
-            }
-      }
-      }
-      }
+      gen=subset(.genes, .genes$V5>=x)[1,]
+      exon=gen$V4:gen$V5
+      if(x %in% exon)
+        gene_list=as.character(gen[1,6])
       else
-      {
-        gene_list=NA
-      }
+        gene_list="non-coding"
     }
     else
     {
-      gene_list=NULL
-      for(n in 1:length(x))
+      gene_list=NA
+    }
+  }
+  else
+  {
+    gene_list=NULL
+    for(n in 1:length(x))
+    {
+      if(x[n] %in% .chr)
       {
-        if(x[n] %in% .chr)
-        {
-          for(i in 1:length(.genes$V3))
-          {
-            rg=.genes[i,4]:.genes[i,5]
-            if(x[n] %in% rg)
-            {
-              gene_list[n]=as.character(.genes[i,6])
-              break
-            }
-            else
-            {
-              gene_list[n]="non_coding"
-            }
-          }
-        }
+        gen=subset(.genes, .genes$V5>=x[n])[1,]
+        exon=gen$V4:gen$V5
+        if(x[n] %in% exon)
+          gene_list[n]=as.character(gen[1,6])
         else
-        {
-          gene_list[n]=NA
-        }
+          gene_list[n]="non-coding"
+      }
+      else
+      {
+        gene_list[n]=NA
       }
     }
+  }
   }
   return(gene_list)
 }
